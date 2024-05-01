@@ -1,4 +1,4 @@
-const { test, expect } = require('@playwright/test');
+const { test } = require('@playwright/test');
 const filterRecipesWithSoup = require('./regex');
 
 test('get links A-Z', async ({ page }) => {
