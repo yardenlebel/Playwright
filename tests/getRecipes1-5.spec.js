@@ -1,7 +1,7 @@
 const { test } = require('@playwright/test');
 const filterRecipesWithSoup = require('./regex');
 
-test('get links A-Z', async ({ page }) => {
+test('get links 1-5', async ({ page }) => {
     async function scraper() {
         try {
             // Wait for the recipe links to be available
@@ -34,10 +34,7 @@ test('get links A-Z', async ({ page }) => {
             if (nextButton) {
                 // Use JavaScript click instead of Playwright's click
                 await nextButton.evaluate(button => button.click());
-    
-                // Wait for a short time to ensure page navigation or content update
-                // await page.waitForTimeout(5000); // Increased timeout to 5 seconds
-    
+                // await nextButton.click();
                 return true;
             } else {
                 console.error('Next button not found');
@@ -55,7 +52,6 @@ test('get links A-Z', async ({ page }) => {
     while (currentPage <= 5) {
         // Scrape recipe links from the current page
         const recipeLinksOnPage = await scraper();
-        console.log(recipeLinksOnPage)
         allRecipeLinks.push(...recipeLinksOnPage);
 
         // Navigate to the next page if available
@@ -69,5 +65,5 @@ test('get links A-Z', async ({ page }) => {
     }
 
     // console.log('All recipe links:', allRecipeLinks);
-    console.log('suop recipe links:', filterRecipesWithSoup(allRecipeLinks));
+    filterRecipesWithSoup(allRecipeLinks);
 });
