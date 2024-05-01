@@ -1,4 +1,5 @@
 const { test, expect } = require('@playwright/test');
+const filterRecipesWithSoup = require('./regex');
 
 test('get links A-Z', async ({ page }) => {
     async function scraper() {
@@ -67,5 +68,6 @@ test('get links A-Z', async ({ page }) => {
         currentPage++;
     }
 
-    console.log('All recipe links:', allRecipeLinks);
+    // console.log('All recipe links:', allRecipeLinks);
+    console.log('suop recipe links:', filterRecipesWithSoup(allRecipeLinks));
 });
